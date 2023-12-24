@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiProv } from '../providers/api.prov';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 @Component({

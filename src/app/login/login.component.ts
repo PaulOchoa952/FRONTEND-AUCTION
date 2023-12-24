@@ -13,7 +13,7 @@ export class LoginComponent {
     constructor(private apiProv:ApiProv){
       if(apiProv.isAuthenticatedUser()){
         console.log('User is already authenticated.');
-        window.location.href = '/cars';
+        window.location.href = '/carros';
       }
     }
   

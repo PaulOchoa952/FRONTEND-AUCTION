@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:'login',component: LoginComponent},
   {path:'carros',component: CarListComponent},
   {path:'**',redirectTo:'login'},
+  
 
 ];
 
