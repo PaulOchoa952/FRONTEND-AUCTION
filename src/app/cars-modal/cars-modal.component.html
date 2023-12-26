@@ -1,0 +1,32 @@
+<section>
+    <div class="text-right mx-5">
+        <button (click)="Onclose()">
+            X
+        </button>
+    </div>
+
+    <div class="p-6 space-y-4">
+        <h1 class="text-xl font-bold text-black">
+            {{new ? 'Nuevo Carro' : 'Actualizar Carro'}}
+        </h1>
+        <div class="space-y-4 md:space-y-6">
+            <input class="bg-black text-white" [(ngModel)]="modelo" placeholder="Pickup"><br>
+            <input class="bg-black text-white" [(ngModel)]="color" placeholder="Plata"><br>
+            <input class="bg-black text-white" [(ngModel)]="precio" placeholder="130000"><br>
+            <input class="bg-black text-white" [(ngModel)]="descripcion" placeholder="fERRARI SPIDER"><br>
+            <input class="bg-black text-white" [(ngModel)]="img" placeholder="URL de Imagen"><br>
+       
+            <div class="text-center">
+                @if (new) {
+                    <button (click)="createCar()" class="bg-blue-500">
+                        Guardar
+                    </button>
+                } @else {
+                    <button (click)="updateCarro()" class="bg-blue-500">
+                        Actualizar
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

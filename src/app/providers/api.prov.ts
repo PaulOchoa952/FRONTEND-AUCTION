@@ -36,7 +36,7 @@ export class ApiProv {
         })
     }
 
-    createBook(data:any):Promise<any>{
+    createCar(data:any):Promise<any>{
         const token = localStorage.getItem('token');
         return new Promise((resolve,reject)=>{
            axios.post(this.url+'carros',data,{
@@ -52,7 +52,7 @@ export class ApiProv {
         });
     }
 
-    updateBook(carId:any,data:any):Promise<any>{
+    updateCarro(carId:any,data:any):Promise<any>{
         const token = localStorage.getItem('token');
         return new Promise((resolve,reject)=>{
             axios.put(this.url+'carros/'+carId,data,{
@@ -67,7 +67,7 @@ export class ApiProv {
         });
     }
 
-    deleteBook(carId:any):Promise<any>{
+    deleteCarro(carId:any):Promise<any>{
         const token = localStorage.getItem('token');
         return new Promise((resolve,reject)=>{
             axios.delete(this.url+'carros/'+carId,{

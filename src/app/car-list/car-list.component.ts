@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiProv } from '../providers/api.prov';
 import { MatDialog } from '@angular/material/dialog';
+import { CarsModalComponent } from '../cars-modal/cars-modal.component';
+
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-car-list',
@@ -31,25 +33,61 @@ export class CarListComponent {
     window.location.href = '/login';
   }
 
-  public deleteBook(book: any) {
+  public deleteCarro(carro: any) {
     Swal.fire({
       showCancelButton: true,
-      title: '¿Desea eliminar libro: ' + book.titulo + ' ?',
+      title: '¿Desea eliminar libro: ' + carro.modelo + ' ?',
       confirmButtonText: "Confirmar",
       cancelButtonText: `Cancelar`
     }).then((result) => {
       if (result.isConfirmed) {
-        this.apiProv.deleteBook(book._id)
+        this.apiProv.deleteCarro(carro._id)
           .then(
             (res) => {
               Swal.fire({
-                title: "Libro Eliminado",
+                title: "Carro Eliminado",
                 icon: "success"
               });
               this.getCars();
             }
           );
       }
+    });
+  }
+  public newBookModal() {
+    const dialogRef = this.dialog.open(CarsModalComponent, {
+      data: {
+        new: true
+      },
+      disableClose: true,
+      hasBackdrop: true,
+      width: '80%',
+      height: '80%',
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.getCars();
+    });
+  }
+
+  public updateBookModal(carro: any) {
+    const dialogRef = this.dialog.open(CarsModalComponent, {
+      data: {
+        new: false,
+        carroId: carro._id,
+        modelo: carro.titulo,
+        color: carro.autor,
+        precio: carro.isbn,
+        descripcion: carro.descripcion,
+        imagenes: carro.imagenes
+      },
+      disableClose: true,
+      hasBackdrop: true,
+      width: '80%',
+      height: '80%',
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.getCars();
     });
   }
   
