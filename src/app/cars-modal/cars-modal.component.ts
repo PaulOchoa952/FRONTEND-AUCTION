@@ -1,6 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material/dialog';
+'@angular/material/dialog';
 import { ApiProv } from '../providers/api.prov';
 import Swal from 'sweetalert2';
 import { Inject } from '@angular/core';
