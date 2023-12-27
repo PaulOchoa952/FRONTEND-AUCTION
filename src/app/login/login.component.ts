@@ -18,10 +18,12 @@ export class LoginComponent {
     }
   
     public login(){
+      console.log("prueba");
       const data = {
         email: this.email,
         password: this.password
       }
+      console.log("pasa");
       this.apiProv.login(data).then((response)=>{
         console.log(response);
         if(response.token){

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiProv } from '../providers/api.prov';
 import { MatDialog } from '@angular/material/dialog';
 import { CarsModalComponent } from '../cars-modal/cars-modal.component';
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 @Component({
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class CarListComponent {
   public cars:any=[];
-  constructor(private apiProv:ApiProv,
+  constructor(private apiProv:ApiProv,private router: Router,
     public dialog:MatDialog,){
       this.getCars();
   }
@@ -89,6 +90,11 @@ export class CarListComponent {
     dialogRef.afterClosed().subscribe((result: any) => {
       this.getCars();
     });
+  }
+
+  //funcion para navegar a la info del carro
+  carClick(carId: string) {
+    this.router.navigate(['/car-info', carId]);
   }
   
 }

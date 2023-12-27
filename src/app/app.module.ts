@@ -8,13 +8,15 @@ import { CarListComponent } from './car-list/car-list.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarsModalComponent } from './cars-modal/cars-modal.component';
+import { CarInfoComponent } from './car-info/car-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CarListComponent,
-    CarsModalComponent
+    CarsModalComponent,
+    CarInfoComponent
   ],
   imports: [
     BrowserModule,
