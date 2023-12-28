@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiProv } from '../providers/api.prov';
+import { MatDialog } from '@angular/material/dialog';
+import { InitSubastaModalComponent } from '../initSubasta-modal/initSubasta-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-info',
@@ -11,9 +14,26 @@ export class CarInfoComponent implements OnInit {
   carId: string | null = null;
   public car: any;
 
-  constructor(private route: ActivatedRoute,private apiProv:ApiProv) {
+  constructor(private route: ActivatedRoute,private apiProv:ApiProv,private router: Router,
+    public dialog:MatDialog,) {
     
   }
+
+  public IniciarSubasta() {
+    const dialogRef = this.dialog.open(InitSubastaModalComponent, {
+      data: {
+        new: true
+      },
+      disableClose: true,
+      hasBackdrop: true,
+      width: '80%',
+      height: '80%',
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.getCarById(this.carId);
+    });
+  }
+
 
     // Método para obtener la información de un carro por su ID
     getCarById(carId: string | null) {

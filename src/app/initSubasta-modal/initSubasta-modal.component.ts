@@ -5,11 +5,11 @@ import Swal from 'sweetalert2';
 import { Inject } from '@angular/core';
 
 @Component({
-  selector: 'app-cars-modal',
-  templateUrl: './cars-modal.component.html',
-  styleUrls: ['./cars-modal.component.css']
+  selector: 'app-initSubasta-modal',
+  templateUrl: './initSubasta-modal.component.html',
+  styleUrls: ['./initSubasta-modal.component.css']
 })
-export class CarsModalComponent {
+export class InitSubastaModalComponent {
   public new = false;
   public carroId = '';
   public modelo = '';
@@ -17,9 +17,14 @@ export class CarsModalComponent {
   public precio = '';
   public descripcion = '';
   public img='';
+  showOptions = false;
+
+  toggleOptions() {
+    this.showOptions = !this.showOptions;
+  }
 
   constructor(
-    public dialogRef: MatDialogRef<CarsModalComponent>,
+    public dialogRef: MatDialogRef<InitSubastaModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private apiProv: ApiProv
   ){
@@ -32,7 +37,7 @@ export class CarsModalComponent {
     this.img = data.img;
   }
 
-  public createCar() {
+  public createSubasta() {
     const data = {
       modelo: this.modelo,
       color: this.color,
@@ -63,28 +68,7 @@ export class CarsModalComponent {
     
   }
 
-  public updateCarro(): void {
-    const data = {
-      modelo: this.modelo,
-      color: this.color,
-      precio: this.precio,
-      descripcion: this.descripcion,
-      imagenes: this.img
-    }
-
-    this.apiProv.updateCarro(this.carroId, data)
-    .then(
-      (res) => {
-        if(res){
-          Swal.fire({
-            title: "Carro Actualizado",
-            icon: "success"
-          });
-          this.Onclose()
-        }
-      }
-    );
-  }
+  
 
   Onclose(): void {
     this.dialogRef.close();
