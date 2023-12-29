@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'login',component: LoginComponent},
   {path:'carros',component: CarListComponent,canActivate: [AuthGuard] },
   {path:"car-info/:id",component:CarInfoComponent,canActivate: [AuthGuard]},
-  {path:"users",component:RegisterPageComponent, canActivate: [AuthGuard]},
+  {path:"users",component:RegisterPageComponent},
   {path:'**',redirectTo:'login'},
   
 
