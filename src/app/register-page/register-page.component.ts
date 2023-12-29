@@ -46,7 +46,9 @@ export class RegisterPageComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
-        window.location.href = '/login';
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 1500);
       }
       else {
         Swal.fire({
