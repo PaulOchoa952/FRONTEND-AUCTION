@@ -4,6 +4,7 @@ import { ApiProv } from '../providers/api.prov';
 import { MatDialog } from '@angular/material/dialog';
 import { InitSubastaModalComponent } from '../initSubasta-modal/initSubasta-modal.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-car-info',
@@ -20,18 +21,37 @@ export class CarInfoComponent implements OnInit {
   }
 
   public IniciarSubasta() {
-    const dialogRef = this.dialog.open(InitSubastaModalComponent, {
-      data: {
-        new: true
-      },
-      disableClose: true,
-      hasBackdrop: true,
-      width: '80%',
-      height: '80%',
+    // Verifica que el carro no este en subasta
+    //console.log(this.carId);
+    this.apiProv.verfiedSubasta(this.carId!).then((response) => {
+      if (response.success) {
+        Swal.fire({
+          title: 'Error',
+          text: 'El carro ya está en subasta',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      } else {
+        const dialogRef = this.dialog.open(InitSubastaModalComponent, {
+          data: {
+            new: true,
+            carId: this.carId,
+          },
+          disableClose: true,
+          hasBackdrop: true,
+          width: '80%',
+          height: '80%',
+        });
+        dialogRef.afterClosed().subscribe((result: any) => {
+          this.getCarById(this.carId);
+        });
+        
+      }
+    }).catch((error) => {
+      console.error(error);
     });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      this.getCarById(this.carId);
-    });
+    
+    
   }
 
 
