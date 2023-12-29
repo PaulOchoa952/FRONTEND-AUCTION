@@ -46,6 +46,7 @@ export class RegisterPageComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
+        window.location.href = '/login';
       }
       else {
         Swal.fire({
