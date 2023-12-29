@@ -29,14 +29,11 @@ export class ApiProv {
     localStorage.removeItem('token');
   }
   register(data: any): Promise<any> {
-    const token = localStorage.getItem('token');
+
     return new Promise((resolve, reject) => {
       axios
-        .post(this.url + 'users', data,{
-          headers: {
-            Authorization: token,
-          },
-        })
+        .post(this.url + 'users', data,
+        )
         .then((response) => {
           resolve(response.data);
         })

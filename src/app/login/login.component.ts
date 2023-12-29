@@ -7,6 +7,7 @@ import { ApiProv } from '../providers/api.prov';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   public email:string='';
   public password:string='';
   
@@ -32,9 +33,8 @@ export class LoginComponent {
         }
       })
     }
-
     goToRegister() {
-      window.location.href = '/register';
-    }
-    
+      window.location.href = '/users';
+      }
+
   }
