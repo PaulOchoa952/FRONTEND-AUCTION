@@ -96,5 +96,9 @@ export class CarListComponent {
   carClick(carId: string) {
     this.router.navigate(['/car-info', carId]);
   }
+
+  goToRegister() {
+    window.location.href = '/users';
+  }
   
 }

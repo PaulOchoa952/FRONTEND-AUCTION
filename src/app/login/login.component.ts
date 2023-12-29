@@ -32,4 +32,9 @@ export class LoginComponent {
         }
       })
     }
+
+    goToRegister() {
+      window.location.href = '/register';
+    }
+    
   }

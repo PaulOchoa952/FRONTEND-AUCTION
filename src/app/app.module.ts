@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 
 // Importa el idioma español para el datepicker
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { RegisterPageComponent } from './register-page/register-page.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -38,6 +39,7 @@ export const MY_FORMATS = {
     CarsModalComponent,
     CarInfoComponent,
     InitSubastaModalComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
