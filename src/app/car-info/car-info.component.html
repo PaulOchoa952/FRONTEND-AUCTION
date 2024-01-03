@@ -103,10 +103,11 @@
           <!-- Reviews -->
           <div class="mt-6">
             <div class="flex items-center">
-              <a
-                href="#"
+              <button
+
+                (click)="verHistorial()"
                 class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                >Historial de Ofertas</a
+                >Historial de Ofertas</button
               >
             </div>
           </div>
@@ -212,59 +213,9 @@
           </div>
         </div>
 
-        <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+        
 
-          <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400">
-                <span class="text-gray-600">Hand cut and sewn locally</span>
-              </li>
-              <li class="text-gray-400">
-                <span class="text-gray-600"
-                  >Dyed with our proprietary colors</span
-                >
-              </li>
-              <li class="text-gray-400">
-                <span class="text-gray-600">Pre-washed &amp; pre-shrunk</span>
-              </li>
-              <li class="text-gray-400">
-                <span class="text-gray-600">Ultra-soft 100% cotton</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mt-10">
-          <h2 class="text-sm font-medium text-gray-900">Color</h2>
-          <div>
-            <fieldset class="mt-4">
-              <legend class="sr-only">Choose a color</legend>
-              <div class="flex items-center space-x-3">
-                <!--
-                      Active and Checked: "ring ring-offset-1"
-                      Not Active and Checked: "ring-2"
-                    -->
-                <label
-                  class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400"
-                >
-                  <input
-                    type="radio"
-                    name="color-choice"
-                    value="Orange"
-                    class="sr-only"
-                    aria-labelledby="color-choice-0-label"
-                  />
-                  <span id="color-choice-0-label" class="sr-only">Orange</span>
-                  <span
-                    aria-hidden="true"
-                    class="h-8 w-8 bg-orange-500 rounded-full border border-black border-opacity-10"
-                  ></span>
-                </label>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>

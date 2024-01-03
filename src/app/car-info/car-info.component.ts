@@ -1,11 +1,17 @@
-import { Component, OnInit, NgZone} from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiProv } from '../providers/api.prov';
 import { MatDialog } from '@angular/material/dialog';
 import { InitSubastaModalComponent } from '../initSubasta-modal/initSubasta-modal.component';
+import { HistorialModalComponent } from '../historial-modal/historial-modal.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,7 +22,9 @@ import { Subscription } from 'rxjs';
 export class CarInfoComponent implements OnInit {
   carId: string | null = null;
   public car: any;
-  public sub : any;
+  public sub: any;
+  public subastaId: any;
+  public ofertas: any;
   public estadoSubasta: boolean = false;
   public miFormulario: FormGroup;
   private subastaSubscription: Subscription | null = null;
@@ -36,14 +44,14 @@ export class CarInfoComponent implements OnInit {
   }
   onSubmit() {
     if (this.miFormulario.valid) {
-      if(this.miFormulario.value.oferta <= this.sub.precioFinal){
+      if (this.miFormulario.value.oferta <= this.sub.precioFinal) {
         Swal.fire({
           title: 'Error',
           text: 'La oferta debe ser mayor al precio actual',
           icon: 'error',
           confirmButtonText: 'Aceptar',
         });
-      }else{
+      } else {
         const data = {
           precioOfertado: this.miFormulario.value.oferta,
           subastaId: this.sub._id,
@@ -81,13 +89,11 @@ export class CarInfoComponent implements OnInit {
             });
           });
       }
-      
+
       console.log(this.sub._id);
       console.log(this.miFormulario.value);
     }
-    
   }
-  
 
   public IniciarSubasta() {
     // Verifica que el carro no este en subasta
@@ -123,11 +129,34 @@ export class CarInfoComponent implements OnInit {
       });
   }
 
+  public verHistorial() {
+    // Verifica que el carro no esté en subasta
+    console.log("nose" + this.subastaId);
+  
+    // Llama a la función getOfertasBySubastaId sin cambios en la estructura
+    this.apiProv.getOfertasBySubastaId(this.subastaId)
+      .then((response) => {
+        this.ofertas = response.data;
+  
+        // Abre el HistorialModalComponent después de cargar las ofertas
+        const dialogRef = this.dialog.open(HistorialModalComponent, {
+          data: this.ofertas,
+          disableClose: true,
+          hasBackdrop: true,
+          width: '80%',
+          height: '80%',
+        });
+      })
+      .catch((error) => {
+        console.error('Error al obtener ofertas o abrir el historial modal:', error);
+      });
+  }
+  
+
   // Método para obtener la información de un carro por su ID
   getCarById(carId: string | null) {
     // Verifica si carId es null antes de intentar hacer la llamada a la API
     if (carId !== null) {
-      
       this.apiProv
         .getCarById(carId)
         .then((response) => {
@@ -138,9 +167,7 @@ export class CarInfoComponent implements OnInit {
           this.apiProv
             .verfiedSubasta(this.carId!)
             .then((subastaResponse) => {
-              
               this.estadoSubasta = subastaResponse.success;
-             
             })
             .catch((subastaError) => {
               console.error(subastaError);
@@ -153,13 +180,16 @@ export class CarInfoComponent implements OnInit {
       console.error('El ID del carro es nulo.');
     }
   }
-  
+
   getSubastaById(subastaId: string | null): void {
     if (subastaId !== null) {
-      this.apiProv.getSubastaById(subastaId)
+      this.apiProv
+        .getSubastaById(subastaId)
         .then((response) => {
           this.ngZone.run(() => {
             this.sub = response.data;
+            console.log(response.data._id);
+            this.subastaId = response.data._id;
           });
         })
         .catch((error) => {
@@ -169,10 +199,11 @@ export class CarInfoComponent implements OnInit {
       console.error('El ID de la subasta es nulo.');
     }
   }
-  
-  
 
+  
+ 
 
+  
 
   ngOnInit() {
     // Se obtiene el ID del parámetro de la URL
