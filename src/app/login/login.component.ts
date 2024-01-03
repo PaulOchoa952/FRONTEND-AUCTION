@@ -27,6 +27,9 @@ export class LoginComponent {
       this.apiProv.login(data).then((response)=>{
         console.log(response);
         if(response.token){
+          localStorage.setItem('idUser',response.user._id);
+          localStorage.setItem('nombre',response.user.userName);
+          localStorage.setItem('email',response.user.userEmail);
           localStorage.setItem('token',response.token);
           window.location.href = '/carros';
         }
