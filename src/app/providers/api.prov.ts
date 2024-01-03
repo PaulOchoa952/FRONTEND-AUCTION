@@ -259,6 +259,39 @@ export class ApiProv {
         });
     });
   }
+
+
+  public getOfertasBySubastaId(subastaId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // Obtener el token de acceso almacenado en localStorage
+      const token = localStorage.getItem('token');
+
+      // Verificar si hay un token disponible
+      if (!token) {
+        // Rechazar la promesa si no hay un token de acceso disponible
+        reject('No hay token de acceso disponible');
+        return;
+      }
+
+      // Realizar una solicitud GET a la API para obtener la información de ofertas de la subasta
+      axios
+        .get(`${this.url}subastas/ofertas/${subastaId}`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+        .then((response) => {
+          // Resolver la promesa con los datos de ofertas obtenidos de la API
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // Manejar errores y rechazar la promesa con el error correspondiente
+          console.error(error);
+          reject(error);
+        });
+    });
+  }
+
   
 
 }
