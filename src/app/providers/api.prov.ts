@@ -20,6 +20,21 @@ export class ApiProv {
     });
   }
 
+  public getUsers(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${this.url}users`)
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        });
+    });
+  }
+  
+
   isAuthenticatedUser(): boolean {
     const token = localStorage.getItem('token');
     return token ? true : false;
