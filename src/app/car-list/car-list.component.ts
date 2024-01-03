@@ -37,7 +37,7 @@ export class CarListComponent {
   public deleteCarro(carro: any) {
     Swal.fire({
       showCancelButton: true,
-      title: '¿Desea eliminar libro: ' + carro.modelo + ' ?',
+      title: '¿Desea eliminar Carro: ' + carro.modelo + ' ?',
       confirmButtonText: "Confirmar",
       cancelButtonText: `Cancelar`
     }).then((result) => {
