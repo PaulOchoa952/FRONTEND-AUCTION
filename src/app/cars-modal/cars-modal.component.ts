@@ -69,7 +69,7 @@ export class CarsModalComponent {
       color: this.color,
       precio: this.precio,
       descripcion: this.descripcion,
-      imagenes: this.img
+      img: this.img
     }
 
     this.apiProv.updateCarro(this.carroId, data)
