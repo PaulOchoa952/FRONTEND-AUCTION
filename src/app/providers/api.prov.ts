@@ -33,7 +33,6 @@ export class ApiProv {
         });
     });
   }
-  
 
   isAuthenticatedUser(): boolean {
     const token = localStorage.getItem('token');
@@ -44,11 +43,9 @@ export class ApiProv {
     localStorage.removeItem('token');
   }
   register(data: any): Promise<any> {
-
     return new Promise((resolve, reject) => {
       axios
-        .post(this.url + 'users', data,
-        )
+        .post(this.url + 'users', data)
         .then((response) => {
           resolve(response.data);
         })
@@ -170,18 +167,17 @@ export class ApiProv {
   }
 
   public getSubastaById(subastaId: string): Promise<any> {
-    
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
       const token = localStorage.getItem('token');
-  
+
       // Verificar si hay un token disponible
       if (!token) {
         // Rechazar la promesa si no hay un token de acceso disponible
         reject('No hay token de acceso disponible');
         return;
       }
-  
+
       // Realizar una solicitud GET a la API para obtener la información de la subasta por su ID
       axios
         .get(`${this.url}subastas/info/${subastaId}`, {
@@ -200,7 +196,6 @@ export class ApiProv {
         });
     });
   }
-  
 
   public verfiedSubasta(carId: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -252,6 +247,61 @@ export class ApiProv {
     });
   }
 
+  public closeSubasta(subastaId: any): Promise<any> {
+    const token = localStorage.getItem('token');
+    return new Promise((resolve, reject) => {
+      axios
+        .put(
+          `${this.url}subastas/${subastaId}`,
+          {},
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // Rechazar la promesa con el error
+          reject(error);
+        });
+    });
+  }
+
+  public getSubastasActivas(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // Obtener el token de acceso almacenado en localStorage
+      const token = localStorage.getItem('token');
+
+      // Verificar si hay un token disponible
+      if (!token) {
+        // Rechazar la promesa si no hay un token de acceso disponible
+        reject('No hay token de acceso disponible');
+        return;
+      }
+
+      // Realizar una solicitud GET a la API para obtener la información de subastas activas
+      axios
+        .get(this.url + 'subastas/activa', {
+          headers: {
+            Authorization: `${token}`, // Incluir el token en el encabezado Authorization
+          },
+        })
+        .then((response) => {
+          // Resolver la promesa con los datos de subastas obtenidos de la API
+          console.log('hola');
+          console.log(response.data);
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // Manejar errores y rechazar la promesa con el error correspondiente
+          console.error(error);
+          reject(error);
+        });
+    });
+  }
 
   public updateSubasta(subastaId: any, data: any): Promise<any> {
     const token = localStorage.getItem('token');
@@ -271,7 +321,6 @@ export class ApiProv {
         });
     });
   }
-
 
   public getOfertasBySubastaId(subastaId: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -303,7 +352,4 @@ export class ApiProv {
         });
     });
   }
-
-  
-
 }

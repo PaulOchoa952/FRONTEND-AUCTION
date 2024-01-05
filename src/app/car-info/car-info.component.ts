@@ -102,12 +102,23 @@ export class CarInfoComponent implements OnInit {
       .verfiedSubasta(this.carId!)
       .then((response) => {
         if (response.success) {
-          Swal.fire({
-            title: 'Error',
-            text: 'El carro ya está en subasta',
-            icon: 'error',
-            confirmButtonText: 'Aceptar',
-          });
+          console.log(response);
+          if(response.data.estado == "cerrado"){
+            Swal.fire({
+              title: 'Error',
+              text: 'El carro ya fue subastado.',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+            });
+          } else{
+            Swal.fire({
+              title: 'Error',
+              text: 'El carro ya está en subasta.',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+            });
+          }
+          
         } else {
           const dialogRef = this.dialog.open(InitSubastaModalComponent, {
             data: {
@@ -127,6 +138,27 @@ export class CarInfoComponent implements OnInit {
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  public CerrarSubasta() {
+    this.apiProv.closeSubasta(this.subastaId).then((response) => {
+      if (response) {
+        Swal.fire({
+          title: 'Subasta Cerrada',
+          text: 'La subasta se ha cerrado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+        this.getCarById(this.carId);
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error al cerrar la subasta',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+      }
+    });
   }
 
   public verHistorial() {
