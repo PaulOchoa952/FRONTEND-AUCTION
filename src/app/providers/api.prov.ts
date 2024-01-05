@@ -61,11 +61,11 @@ export class ApiProv {
     });
   }
 
-  updateCarro(carId: any, data: any): Promise<any> {
+  updateCarro(carroId: any, data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
       axios
-        .put(this.url + 'carros/' + carId, data, {
+        .put(this.url + 'carros/' + carroId, data, {
           headers: {
             Authorization: token,
           },
@@ -79,11 +79,11 @@ export class ApiProv {
     });
   }
 
-  deleteCarro(carId: any): Promise<any> {
+  deleteCarro(carroId: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
       axios
-        .delete(this.url + 'carros/' + carId, {
+        .delete(this.url + 'carros/' + carroId, {
           headers: {
             Authorization: token,
           },
@@ -123,7 +123,7 @@ export class ApiProv {
     });
   }
 
-  public getCarById(carId: string): Promise<any> {
+  public getCarById(carroId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
       const token = localStorage.getItem('token');
@@ -137,7 +137,7 @@ export class ApiProv {
 
       // Realizar una solicitud GET a la API para obtener la información del carro
       axios
-        .get(`${this.url}carros/${carId}`, {
+        .get(`${this.url}carros/${carroId}`, {
           headers: {
             Authorization: `${token}`,
           },
