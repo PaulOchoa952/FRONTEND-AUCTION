@@ -11,11 +11,24 @@ import Swal from 'sweetalert2';
   styleUrl: './car-list.component.css'
 })
 export class CarListComponent {
+  selectedOption = "option1";
+
   public cars:any=[];
+  public carsSubastados:any=[];
   constructor(private apiProv:ApiProv,private router: Router,
     public dialog:MatDialog,){
       this.getCars();
+      this.getCarrosSubastados();
   }
+
+  public getCarrosSubastados() {
+    this.apiProv.getSubastasActivas().then((response) => {
+      this.carsSubastados = response.data;
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   public getCars() {
     this.apiProv.getCars().then((response) => {
       this.cars = response.data;
@@ -95,6 +108,10 @@ export class CarListComponent {
   //funcion para navegar a la info del carro
   carClick(carId: string) {
     this.router.navigate(['/car-info', carId]);
+  }
+
+  userClick() {
+    this.router.navigate(['/list-users']);
   }
 
   goToRegister() {

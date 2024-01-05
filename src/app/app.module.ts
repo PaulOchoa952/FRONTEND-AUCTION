@@ -15,10 +15,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 // Importa el idioma español para el datepicker
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { ListUsersComponent } from './list-users/list-users.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -40,6 +42,7 @@ export const MY_FORMATS = {
     CarInfoComponent,
     InitSubastaModalComponent,
     RegisterPageComponent,
+    ListUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ export const MY_FORMATS = {
     MatFormFieldModule,
     MatNativeDateModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonToggleModule,
     
   ],
   providers: [

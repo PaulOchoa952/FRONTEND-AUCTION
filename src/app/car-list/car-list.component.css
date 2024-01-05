@@ -1,0 +1,8 @@
+mat-button-toggle.mat-button-toggle-checked {
+	background-color: rgb(59 130 246); /* Cambia el color de fondo cuando está seleccionado */
+	color: #fff; /* Cambia el color del texto cuando está seleccionado */
+  }
+  
+  mat-button-toggle.mat-button-toggle-label-checked {
+	color: #fff; /* Cambia el color del texto cuando está seleccionado */
+  }

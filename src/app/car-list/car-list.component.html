@@ -1,47 +1,137 @@
 <header class="bg-blue-500 p-4 text-white">
-    <div class="flex justify-end space-x-4">
-      <button (click)="newBookModal()" class="bg-green-500 px-4 py-2 rounded">Nuevo Automovil</button>
-      <button (click)="logout()" class="bg-yellow-500 px-4 py-2 rounded">Cerrar Sesión</button>
-    </div>
-  </header>
-  
-    <body>
-      <div class="grid grid-cols-6 gap-5 p-20">
-          <div *ngFor="let car of cars; trackBy: trackCarId"
-               class="col-span-6 mt-5 bg-opacity-50 border border-gray-100 rounded shadow-lg cursor-pointer bg-gradient-to-b from-gray-200 backdrop-blur-20 to-gray-50 md:col-span-3 lg:col-span-2"
-               
-               >
-            <div class="flex flex-row px-2 py-3 mx-3">
-              <div class="flex flex-col mt-1 mb-2 ml-4">
-                <div class="text-sm text-gray-600 font-bold text-xl">{{ car.descripcion }}</div>
-                <div class="flex w-full mt-1">
-                  <div class="mr-1 text-xs text-blue-700 cursor-pointer font-base">
-                    {{ "$ "+car.precio }}
-                  </div>
-                </div>
-              </div>
-            </div>
-        
-            <div class="flex justify-center px-2 mx-3 my-2 text-sm font-medium text-gray-400">
-              <img class="w-[300px] h-[300px] rounded-full shadow-2xl object-cover" [src]="car.img" (click)="carClick(car._id)">
-            </div>
+  <div class="flex items-center justify-between">
+    <!-- Botón del icono a la izquierda -->
+    <button (click)="userClick()" class="text-gray-300">
+      <svg
+        class="h-12 w-12"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
 
-            <div class="mb-5 border-t border-gray-100">
-              <div class="flex flex-wrap justify-start mx-5 mt-6 text-xs sm:justify-center">
-                <!-- Agrega cualquier información adicional que desees mostrar -->
-              </div>
+    <!-- Contenedor para los botones a la derecha -->
+    <div class="flex space-x-4">
+      <!-- Botón "Nuevo Automovil" -->
+      <button (click)="newBookModal()" class="bg-green-500 px-4 py-2 rounded">
+        Nuevo Automovil
+      </button>
+
+      <!-- Botón "Cerrar Sesión" -->
+      <button (click)="logout()" class="bg-yellow-500 px-4 py-2 rounded">
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</header>
+
+<body>
+  <div class="pl-20 pt-20">
+    <mat-button-toggle-group [(ngModel)]="selectedOption">
+      <mat-button-toggle value="option1">Vehiculos</mat-button-toggle>
+      <mat-button-toggle value="option2">Subastas Activas</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div *ngIf="selectedOption === 'option1'">
+    <div class="grid grid-cols-6 gap-5 pl-20 pr-20">
+      <div
+        *ngFor="let car of cars; trackBy: trackCarId"
+        class="col-span-6 mt-5 bg-opacity-50 border border-gray-100 rounded shadow-lg cursor-pointer bg-gradient-to-b from-gray-200 backdrop-blur-20 to-gray-50 md:col-span-3 lg:col-span-2"
+      >
+        <div class="flex flex-row px-2 py-3 mx-3">
+          <div class="flex flex-col mt-1 mb-2 ml-4">
+            <div class="text-sm text-gray-600 font-bold text-xl">
+              {{ car.descripcion }}
             </div>
-        
-            <div class="flex justify-center mt-2">
-             <button class="bg-blue-500 p-2 rounded-full hover:bg-blue-600 focus:outline-none mx-2" (click)="updateBookModal(car)">
-                Actualizar
-              </button>
-              <button class="bg-red-500 p-2 rounded-full hover:bg-red-600 focus:outline-none mx-2" (click)="deleteCarro(car)">
-                Eliminar
-              </button>
+            <div class="flex w-full mt-1">
+              <div class="mr-1 text-xs text-blue-700 cursor-pointer font-base">
+                {{ "$ " + car.precio }}
+              </div>
             </div>
           </div>
         </div>
-    </body>
-  
-    
+
+        <div
+          class="flex justify-center px-2 mx-3 my-2 text-sm font-medium text-gray-400"
+        >
+          <img
+            class="w-[300px] h-[300px] rounded-full shadow-2xl object-cover"
+            [src]="car.img"
+            (click)="carClick(car._id)"
+          />
+        </div>
+
+        <div class="mb-5 border-t border-gray-100">
+          <div
+            class="flex flex-wrap justify-start mx-5 mt-6 text-xs sm:justify-center"
+          >
+            <!-- Agrega cualquier información adicional que desees mostrar -->
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-2">
+          <button
+            class="bg-blue-500 p-2 rounded-full hover:bg-blue-600 focus:outline-none mx-2"
+            (click)="updateBookModal(car)"
+          >
+            Actualizar
+          </button>
+          <button
+            class="bg-red-500 p-2 rounded-full hover:bg-red-600 focus:outline-none mx-2"
+            (click)="deleteCarro(car)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedOption === 'option2'">
+    <div class="grid grid-cols-6 gap-5 pl-20 pr-20">
+      <div
+        *ngFor="let car of carsSubastados; trackBy: trackCarId"
+        class="col-span-6 mt-5 bg-opacity-50 border border-gray-100 rounded shadow-lg cursor-pointer bg-gradient-to-b from-gray-200 backdrop-blur-20 to-gray-50 md:col-span-3 lg:col-span-2"
+      >
+        <div class="flex flex-row px-2 py-3 mx-3">
+          <div class="flex flex-col mt-1 mb-2 ml-4">
+            <div class="text-sm text-gray-600 font-bold text-xl">
+              {{ car.descripcion }}
+            </div>
+            <div class="flex w-full mt-1">
+              <div class="mr-1 text-xs text-blue-700 cursor-pointer font-base">
+                {{ "$ " + car.precio }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex justify-center px-2 mx-3 my-2 text-sm font-medium text-gray-400"
+        >
+          <img
+            class="w-[300px] h-[300px] rounded-full shadow-2xl object-cover"
+            [src]="car.img"
+            (click)="carClick(car._id)"
+          />
+        </div>
+
+        <div class="mb-5 border-t border-gray-100">
+          <div
+            class="flex flex-wrap justify-start mx-5 mt-6 text-xs sm:justify-center"
+          >
+            <!-- Agrega cualquier información adicional que desees mostrar -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
