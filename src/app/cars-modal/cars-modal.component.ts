@@ -23,6 +23,24 @@ export class CarsModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private apiProv: ApiProv
   ){
+
+//Validar que exista el id del carro
+    if (data.carroId) {
+      this.carroId = data.carroId;
+    } else {
+      console.error('ID del carro no proporcionado en los datos.');
+    }
+    this.asignarDatos(data);
+
+  }
+
+  //método para asignar los datos al componente
+  private asignarDatos(data: any): void {
+    if (data.data) {
+      // Si existe data.data, utiliza esos datos
+      data = data.data;
+    }
+    // Asignar los datos al componente
     this.new = data.new;
     this.carroId = data.carroId;
     this.modelo = data.modelo;
@@ -30,6 +48,8 @@ export class CarsModalComponent {
     this.precio = data.precio;
     this.descripcion = data.descripcion;
     this.img = data.img;
+  
+    console.log("Valores asignados al componente:", this);
   }
 
   public createCar() {
@@ -64,6 +84,11 @@ export class CarsModalComponent {
   }
 
   public updateCarro(): void {
+      // Verifica si carroId es válido antes de intentar la actualización
+  if (!this.carroId) {
+    console.error('ID del carro no válido');
+    return;
+  }
     const data = {
       modelo: this.modelo,
       color: this.color,

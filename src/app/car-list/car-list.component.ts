@@ -88,11 +88,11 @@ export class CarListComponent {
       data: {
         new: false,
         carroId: carro._id,
-        modelo: carro.titulo,
-        color: carro.autor,
-        precio: carro.isbn,
+        modelo: carro.modelo,
+        color: carro.color,
+        precio: carro.precio,
         descripcion: carro.descripcion,
-        imagenes: carro.imagenes
+        img : carro.img
       },
       disableClose: true,
       hasBackdrop: true,
