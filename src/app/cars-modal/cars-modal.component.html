@@ -10,12 +10,16 @@
             {{new ? 'Nuevo Carro' : 'Actualizar Carro'}}
         </h1>
         <div class="space-y-4 md:space-y-6">
+            <label for="modelo">Modelo:</label>
             <input [(ngModel)]="modelo" placeholder="Modelo" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><br>
+            <label for="color">Color:</label>
             <input [(ngModel)]="color" placeholder="Color" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><br>
+            <label for="precio">Precio:</label>
             <input [(ngModel)]="precio" placeholder="Precio" type="number" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><br>
-            <input [(ngModel)]="descripcion" placeholder="Descripcion" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><br>
+            <label for="descripcion">Descripcion:</label>
+            <textarea [(ngModel)]="descripcion" placeholder="Descripcion" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea><br>            <label for="img">URL de Imagen:</label>
+            <label for="img"></label>
             <input [(ngModel)]="img" placeholder="URL de Imagen" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><br>
-       
             <div class="text-center">
                 @if (new) {
                     <button (click)="createCar()" class="bg-blue-500 text-white py-2 rounded-md hover:shadow-md">
