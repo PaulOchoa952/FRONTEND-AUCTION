@@ -352,4 +352,21 @@ export class ApiProv {
         });
     });
   }
+  updateUser(userId: any, data: any): Promise<any> {
+    const token = localStorage.getItem('token');
+    return new Promise((resolve, reject) => {
+      axios
+        .put(this.url + 'users/' + userId, data, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }  
 }

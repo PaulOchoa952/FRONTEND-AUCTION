@@ -21,6 +21,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { ListUsersComponent } from './list-users/list-users.component';
+import { UserModalComponent } from './user-modal/user-modal.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -43,6 +44,7 @@ export const MY_FORMATS = {
     InitSubastaModalComponent,
     RegisterPageComponent,
     ListUsersComponent,
+    UserModalComponent,
   ],
   imports: [
     BrowserModule,
