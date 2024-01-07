@@ -29,7 +29,7 @@ export class UserModalComponent {
     const data = {
       userId:this.userId,
       userName: this.userName,
-      emai: this.email,
+      email: this.email,
     }
     this.apiProv.updateUser(this.userId, data)
     .then(
