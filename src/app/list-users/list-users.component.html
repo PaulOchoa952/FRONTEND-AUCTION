@@ -31,7 +31,13 @@
             </td>
             <td class="px-6 py-4">{{ formatDate(user.createdAt) }}</td>
             <td class="px-6 py-4">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+              <a href="#" (click)="UpdateUserModal(user)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+              <!-- <button
+                    class="bg-blue-500 p-2 rounded-full hover:bg-blue-600 focus:outline-none mx-2"
+                    (click)="updateBookModal(car)"
+                    >
+                    Actualizar
+                  </button>-->
               <span class="mx-2">|</span> <!-- Separador horizontal -->
               <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</a>
             </td>
