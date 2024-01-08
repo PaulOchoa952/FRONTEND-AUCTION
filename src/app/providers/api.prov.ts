@@ -6,7 +6,7 @@ import { environment } from '../../enviroments/enviroment';
 })
 export class ApiProv {
   url = environment.apiURL;
-
+  //metodo para iniciar sesion
   login(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
       axios
@@ -19,7 +19,7 @@ export class ApiProv {
         });
     });
   }
-
+  //metodo para obtener los usuarios
   public getUsers(): Promise<any> {
     return new Promise((resolve, reject) => {
       axios
@@ -34,14 +34,18 @@ export class ApiProv {
     });
   }
 
+  //metodo para saer si el usuario esta autenticado
   isAuthenticatedUser(): boolean {
     const token = localStorage.getItem('token');
     return token ? true : false;
   }
 
+  //metodo para cerrar sesion
   logout() {
     localStorage.removeItem('token');
   }
+
+  //metodo para registrar un usuario
   register(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
       axios
@@ -55,6 +59,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para crear un carro
   createCar(data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -73,6 +78,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para actualizar un carro
   updateCarro(carroId: any, data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -91,6 +97,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para eliminar un carro
   deleteCarro(carroId: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -109,6 +116,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para obtener los carros
   public getCars(): Promise<any> {
     return new Promise((resolve, reject) => {
       const token = localStorage.getItem('token'); // Obtener el token de almacenamiento local
@@ -135,6 +143,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para obtener un carro por su id
   public getCarById(carroId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
@@ -165,7 +174,7 @@ export class ApiProv {
         });
     });
   }
-
+//metodo para obtener las subastas por id
   public getSubastaById(subastaId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
@@ -196,7 +205,7 @@ export class ApiProv {
         });
     });
   }
-
+//metodo para obtener las subastas por id
   public verfiedSubasta(carId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
@@ -228,7 +237,8 @@ export class ApiProv {
         });
     });
   }
-
+  
+  //metodo para crear una subasta
   public createSubasta(data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -246,7 +256,7 @@ export class ApiProv {
         });
     });
   }
-
+  //metodo para cerrar una subasta
   public closeSubasta(subastaId: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -269,7 +279,7 @@ export class ApiProv {
         });
     });
   }
-
+  //metodo para obtener las subastas activas
   public getSubastasActivas(): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
@@ -302,7 +312,7 @@ export class ApiProv {
         });
     });
   }
-
+//metodo para actualizar una subasta
   public updateSubasta(subastaId: any, data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {
@@ -322,6 +332,7 @@ export class ApiProv {
     });
   }
 
+  //metodo para obtener las ofertas de una subasta
   public getOfertasBySubastaId(subastaId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       // Obtener el token de acceso almacenado en localStorage
@@ -352,6 +363,8 @@ export class ApiProv {
         });
     });
   }
+
+  //metodo para actualizar un usuario
   updateUser(userId: any, data: any): Promise<any> {
     const token = localStorage.getItem('token');
     return new Promise((resolve, reject) => {

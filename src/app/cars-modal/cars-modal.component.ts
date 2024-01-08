@@ -48,21 +48,20 @@ export class CarsModalComponent {
     this.precio = data.precio;
     this.descripcion = data.descripcion;
     this.img = data.img;
-  
-    console.log("Valores asignados al componente:", this);
   }
 
+  //metodo para crear un carro
   public createCar() {
       // Validate that all required fields are not empty
-  if (!this.modelo || !this.color || !this.precio || !this.descripcion || !this.img) {
-    Swal.fire({
-      title: 'Error',
-      text: 'Todos los campos son obligatorios. Por favor, complete todos los campos antes de guardar.',
-      icon: 'error',
-      confirmButtonText: 'Aceptar'
-    });
-    return;
-  }
+    if (!this.modelo || !this.color || !this.precio || !this.descripcion || !this.img) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios. Por favor, complete todos los campos antes de guardar.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
     const data = {
       modelo: this.modelo,
       color: this.color,
@@ -90,9 +89,8 @@ export class CarsModalComponent {
         });
       }
     });
-    
   }
-
+  //metodo para actualizar un carro
   public updateCarro(): void {
       // Verifica si carroId es válido antes de intentar la actualización
   if (!this.carroId) {
@@ -120,7 +118,7 @@ export class CarsModalComponent {
       }
     );
   }
-
+//metodo para cerrar el modal
   Onclose(): void {
     this.dialogRef.close();
   }

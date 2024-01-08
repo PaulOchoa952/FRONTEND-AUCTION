@@ -12,19 +12,20 @@ export class LoginComponent {
   public password:string='';
   
     constructor(private apiProv:ApiProv){
+      //validar si el usuario ya esta autenticado
       if(apiProv.isAuthenticatedUser()){
         console.log('User is already authenticated.');
         window.location.href = '/carros';
       }
     }
-  
+    //metodo para iniciar sesion
     public login(){
-      console.log("prueba");
+
       const data = {
         email: this.email,
         password: this.password
       }
-      console.log("pasa");
+
       this.apiProv.login(data).then((response)=>{
         console.log(response);
         if(response.token){
@@ -36,6 +37,7 @@ export class LoginComponent {
         }
       })
     }
+    //metodo para ir a la pagina de registro
     goToRegister() {
       window.location.href = '/users';
       }

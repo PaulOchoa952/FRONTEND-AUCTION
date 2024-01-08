@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class CarListComponent {
   selectedOption = "option1";
-
   public cars:any=[];
   public carsSubastados:any=[];
   constructor(private apiProv:ApiProv,private router: Router,
@@ -20,7 +19,7 @@ export class CarListComponent {
       this.getCars();
       this.getCarrosSubastados();
   }
-
+  //metodo para obtener los carros subastados
   public getCarrosSubastados() {
     this.apiProv.getSubastasActivas().then((response) => {
       this.carsSubastados = response.data;
@@ -28,7 +27,7 @@ export class CarListComponent {
       console.log(error);
     });
   }
-
+//metodo para obtener los carros
   public getCars() {
     this.apiProv.getCars().then((response) => {
       this.cars = response.data;
@@ -41,12 +40,13 @@ export class CarListComponent {
       return car._id; // Suponiendo que `_id` es único para cada libro
     }
 
-
+    //metodo para salir de la sesion
   public logout(){
     this.apiProv.logout();
     window.location.href = '/login';
   }
 
+  //metodo para eliminar un carro
   public deleteCarro(carro: any) {
     Swal.fire({
       showCancelButton: true,
@@ -68,7 +68,8 @@ export class CarListComponent {
       }
     });
   }
-  public newBookModal() {
+  //metodo para crear un nuevo carro
+  public newCarModal() {
     const dialogRef = this.dialog.open(CarsModalComponent, {
       data: {
         new: true
@@ -83,7 +84,8 @@ export class CarListComponent {
     });
   }
 
-  public updateBookModal(carro: any) {
+  //metodo para actualizar un carro
+  public updateCarModal(carro: any) {
     const dialogRef = this.dialog.open(CarsModalComponent, {
       data: {
         new: false,
@@ -109,11 +111,11 @@ export class CarListComponent {
   carClick(carId: string) {
     this.router.navigate(['/car-info', carId]);
   }
-
+  //funcion para navegar a la lista de usuarios
   userClick() {
     this.router.navigate(['/list-users']);
   }
-
+  //funcion para navegar a registrar un usuario
   goToRegister() {
     window.location.href = '/users';
   }

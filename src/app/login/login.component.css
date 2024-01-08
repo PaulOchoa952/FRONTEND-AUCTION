@@ -2,11 +2,12 @@
 body{
   margin: 0;
 }
-
+/* tamaño del contenedor*/
 .container {
   min-height: 100vh;
   padding: 0;
 }
+/* fondo de la imagen*/
 
 .background-image {
   position: absolute;
@@ -18,12 +19,12 @@ body{
   z-index: -1;
   background-size: contain;
 }
-
+/*contenido*/
 .content {
   position: relative;
   z-index: 1;
 }
-/* login.component.css */
+/* ajustar colores del form */
 
 .form-container {
   background-color: rgba(255, 255, 255, 0.8); /* Color de fondo que desees */
