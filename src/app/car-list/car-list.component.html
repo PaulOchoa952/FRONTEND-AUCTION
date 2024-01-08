@@ -1,7 +1,7 @@
 <header class="bg-blue-500 p-4 text-white">
   <div class="flex items-center justify-between">
     <!-- Botón del icono a la izquierda -->
-    <button (click)="userClick()" class="text-gray-300">
+    <button (click)="userClick()" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
       <svg
         class="h-12 w-12"
         viewBox="0 0 24 24"
@@ -14,18 +14,19 @@
           clip-rule="evenodd"
         />
       </svg>
+      <span class="mr-2">Usuarios</span>
     </button>
 
     <!-- Contenedor para los botones a la derecha -->
     <div class="flex space-x-4">
-      <!-- Botón "Nuevo Automovil" -->
-      <button (click)="newBookModal()" class="bg-green-500 px-4 py-2 rounded">
-        Nuevo Automovil
-      </button>
-
+      <button (click)="newBookModal()" class="bg-green-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+        <span class="mr-2">Nuevo Automovil</span>
+        <img src="assets/add.svg" alt="Add Icon" class="fill-current w-4 h-4"/>
+      </button>      
       <!-- Botón "Cerrar Sesión" -->
-      <button (click)="logout()" class="bg-yellow-500 px-4 py-2 rounded">
-        Cerrar Sesión
+      <button (click)="logout()" class="bg-orange-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+        <span class="mr-2">Cerrar Sesión</span>
+        <img src="assets/logout.svg" alt="Add Icon" class="fill-current w-4 h-4"/>
       </button>
     </div>
   </div>
@@ -78,13 +79,13 @@
 
         <div class="flex justify-center mt-2">
           <button
-            class="bg-blue-500 p-2 rounded-full hover:bg-blue-600 focus:outline-none mx-2"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
             (click)="updateBookModal(car)"
           >
             Actualizar
           </button>
           <button
-            class="bg-red-500 p-2 rounded-full hover:bg-red-600 focus:outline-none mx-2"
+            class="bg-red-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
             (click)="deleteCarro(car)"
           >
             Eliminar
