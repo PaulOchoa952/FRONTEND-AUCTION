@@ -21,6 +21,15 @@ export class RegisterPageComponent {
     this.confirmpassword='';
   }
   public register(){
+    if (!this.email || !this.password || !this.confirmpassword || !this.name || !this.lastname || !this.userName ) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios. Por favor, complete todos los campos antes de guardar.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
     if(this.password!== this.confirmpassword){
       Swal.fire({
         title:"Error",
