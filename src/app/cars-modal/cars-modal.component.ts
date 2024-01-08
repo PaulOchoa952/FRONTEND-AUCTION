@@ -53,6 +53,16 @@ export class CarsModalComponent {
   }
 
   public createCar() {
+      // Validate that all required fields are not empty
+  if (!this.modelo || !this.color || !this.precio || !this.descripcion || !this.img) {
+    Swal.fire({
+      title: 'Error',
+      text: 'Todos los campos son obligatorios. Por favor, complete todos los campos antes de guardar.',
+      icon: 'error',
+      confirmButtonText: 'Aceptar'
+    });
+    return;
+  }
     const data = {
       modelo: this.modelo,
       color: this.color,
