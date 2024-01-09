@@ -25,6 +25,15 @@ export class UserModalComponent {
     this.email = data.email;
   }
 
+
+  /**
+ * Actualiza la información de un usuario con los datos proporcionados.
+ * Utiliza el servicio apiProv para enviar la solicitud de actualización al servidor.
+ * Muestra un mensaje de éxito si la actualización se realiza correctamente.
+ * Cierra algún tipo de ventana o modal después de la actualización.
+ */
+
+
   public updateUser(): void {
     const data = {
       userId:this.userId,

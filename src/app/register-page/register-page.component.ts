@@ -20,6 +20,18 @@ export class RegisterPageComponent {
   constructor(private apiProv:ApiProv){
     this.confirmpassword='';
   }
+
+  /**
+ * Realiza el proceso de registro de un nuevo usuario.
+ * Verifica que todos los campos obligatorios estén completos.
+ * Muestra un mensaje de error si algún campo está vacío.
+ * Verifica que las contraseñas coincidan.
+ * Muestra un mensaje de error si las contraseñas no coinciden.
+ * Envía los datos de registro al servicio de autenticación (apiProv).
+ * Muestra mensajes de éxito o error según el resultado del registro.
+ * Redirige a la página de inicio de sesión después de un registro exitoso.
+ */
+
   public register(){
     if (!this.email || !this.password || !this.confirmpassword || !this.name || !this.lastname || !this.userName ) {
       Swal.fire({

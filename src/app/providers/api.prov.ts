@@ -15,7 +15,8 @@ export class ApiProv {
           resolve(response.data);
         })
         .catch((error) => {
-          console.log(error);
+        
+          resolve(error.response.data);
         });
     });
   }
@@ -34,6 +35,23 @@ export class ApiProv {
     });
   }
 
+  public deleteUser (userId: any): Promise<any> {
+    const token = localStorage.getItem('token');
+    return new Promise((resolve, reject) => {
+      axios
+        .delete(this.url + 'users/' + userId, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
   //metodo para saer si el usuario esta autenticado
   isAuthenticatedUser(): boolean {
     const token = localStorage.getItem('token');

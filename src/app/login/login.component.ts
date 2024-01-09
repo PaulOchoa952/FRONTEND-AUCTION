@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiProv } from '../providers/api.prov';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent {
         password: this.password
       }
 
+      
       this.apiProv.login(data).then((response)=>{
         console.log(response);
         if(response.token){
@@ -34,6 +36,13 @@ export class LoginComponent {
           localStorage.setItem('email',response.user.userEmail);
           localStorage.setItem('token',response.token);
           window.location.href = '/carros';
+        }else{
+          Swal.fire({
+            title: 'Error',
+            text: 'Usuario o contraseña incorrecta.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
         }
       })
     }

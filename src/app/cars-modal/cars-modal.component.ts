@@ -104,7 +104,16 @@ export class CarsModalComponent {
       descripcion: this.descripcion,
       img: this.img
     }
-
+    
+    if (!this.modelo || !this.color || !this.precio || !this.descripcion || !this.img) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios. Por favor, complete todos los campos antes de guardar.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }else{
     this.apiProv.updateCarro(this.carroId, data)
     .then(
       (res) => {
@@ -117,6 +126,7 @@ export class CarsModalComponent {
         }
       }
     );
+    }
   }
 //metodo para cerrar el modal
   Onclose(): void {

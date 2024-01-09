@@ -68,6 +68,13 @@ export class InitSubastaModalComponent {
 
   }
 
+  /**
+ * Crea una subasta para el carro actual con la información proporcionada.
+ * Imprime en la consola el ID del carro.
+ * Utiliza el servicio apiProv para enviar la solicitud de creación de subasta.
+ * Muestra un mensaje de éxito si la subasta se crea correctamente,
+ * y un mensaje de error si hay algún problema durante el proceso.
+ */
   public createSubasta() {
     console.log(this.carroId);
     const data = {

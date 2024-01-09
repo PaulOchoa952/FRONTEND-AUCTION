@@ -42,6 +42,14 @@ export class CarInfoComponent implements OnInit {
       // ... otros campos del formulario
     });
   }
+
+  /**
+ * Maneja la presentación de ofertas en una subasta cuando se envía el formulario.
+ * Verifica la validez del formulario.
+ * Compara la oferta con el precio final actual de la subasta.
+ * Si la oferta es válida, realiza la solicitud para actualizar la subasta con la nueva oferta.
+ * Muestra mensajes de éxito o error según el resultado de la operación.
+ */
   onSubmit() {
     if (this.miFormulario.valid) {
       if (this.miFormulario.value.oferta <= this.sub.precioFinal) {
@@ -95,6 +103,15 @@ export class CarInfoComponent implements OnInit {
     }
   }
 
+
+  /*
+  * Método para cerrar la subasta
+  * Verifica que la subasta no esté cerrada
+  * Si la subasta no está cerrada, muestra un mensaje de confirmación
+  * Si el usuario confirma, realiza la solicitud para cerrar la subasta
+  * Muestra un mensaje de éxito o error según el resultado de la operación
+  * Actualiza la información de la subasta
+  * */
   public IniciarSubasta() {
     // Verifica que el carro no este en subasta
     //console.log(this.carId);
@@ -140,6 +157,13 @@ export class CarInfoComponent implements OnInit {
       });
   }
 
+  // Método para cerrar la subasta
+  // Verifica que la subasta no esté cerrada
+  // Si la subasta no está cerrada, muestra un mensaje de confirmación
+  // Si el usuario confirma, realiza la solicitud para cerrar la subasta
+  // Muestra un mensaje de éxito o error según el resultado de la operación
+  // Actualiza la información de la subasta
+
   public CerrarSubasta() {
     this.apiProv.closeSubasta(this.subastaId).then((response) => {
       if (response) {
@@ -160,6 +184,11 @@ export class CarInfoComponent implements OnInit {
       }
     });
   }
+
+  // Método para ver el historial de ofertas de una subasta
+  // Verifica que el carro no esté en subasta
+  // Llama a la función getOfertasBySubastaId sin cambios en la estructura
+  // Abre el HistorialModalComponent después de cargar las ofertas
 
   public verHistorial() {
     // Verifica que el carro no esté en subasta
@@ -185,7 +214,13 @@ export class CarInfoComponent implements OnInit {
   }
   
 
+
   // Método para obtener la información de un carro por su ID
+  // Verifica si carId es null antes de intentar hacer la llamada a la API
+  // Almacena los datos del carro en la variable car
+  // Verifica si el carro está en subasta
+  // Verifica si la subasta está iniciada o no
+  
   getCarById(carId: string | null) {
     // Verifica si carId es null antes de intentar hacer la llamada a la API
     if (carId !== null) {
@@ -213,6 +248,12 @@ export class CarInfoComponent implements OnInit {
     }
   }
 
+
+  // Método para obtener la información de una subasta por su ID
+  // Verifica si subastaId es null antes de intentar hacer la llamada a la API
+  // Almacena los datos de la subasta en la variable sub
+  // Almacena el ID de la subasta en la variable subastaId
+  
   getSubastaById(subastaId: string | null): void {
     if (subastaId !== null) {
       this.apiProv
